@@ -1,0 +1,36 @@
+import { Component } from '@angular/core';
+
+import { LoggerService } from './logger.service';
+
+//The Spy example demonstrates how to use the 
+//hook method for directives as well as components.
+
+@Component({
+  selector: 'spy-parent',
+  templateUrl: './spy.component.html',
+  providers:  [LoggerService]
+})
+export class SpyParentComponent {
+  newName = 'Herbie';
+  heroes: string[] = ['Windstorm', 'Magneta'];
+
+  constructor(public logger: LoggerService) {
+  }
+
+  addHero() {
+    if (this.newName.trim()) {
+      this.heroes.push(this.newName.trim());
+      this.newName = '';
+      this.logger.tick();
+    }
+  }
+  removeHero(hero: string) {
+    this.heroes.splice(this.heroes.indexOf(hero), 1);
+    this.logger.tick();
+  }
+  reset() {
+    this.logger.log('reset');
+    this.heroes = [];
+    this.logger.tick();
+  }
+}
