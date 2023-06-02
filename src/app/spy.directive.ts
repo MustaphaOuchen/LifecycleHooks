@@ -10,6 +10,7 @@ let nextId = 1;
 export class SpyDirective implements OnInit, OnDestroy {
   private id = nextId++;
 
+  //Logger instance used by all
   constructor(private logger: LoggerService) { }
 
   ngOnInit() {

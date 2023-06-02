@@ -53,6 +53,13 @@ export class AfterViewComponent implements  AfterViewChecked, AfterViewInit {
     const c = this.viewChild.hero.length > 10 ? "That's a long name" : '';
     if (c !== this.comment) {
       // Wait a tick because the component's view has already been checked
+      
+      /*
+      The LoggerService.tick_then() statement postpones 
+      the log update for one turn of the browser's 
+      JavaScript cycle, which triggers a new change-detection 
+      cycle.
+      */ 
       this.logger.tick_then(() => this.comment = c);
     }
   }
